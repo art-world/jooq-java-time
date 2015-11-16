@@ -23,6 +23,11 @@
       <artifactId>postgresql</artifactId>
       <version>9.2-1002-jdbc4</version>
     </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -55,7 +60,7 @@
             <configuration>
               <jdbc>
                 <driver>org.postgresql.Driver</driver>
-                <url>jdbc:postgresql://127.0.0.1:5433/jooqtest</url>
+                <url>jdbc:postgresql://127.0.0.1:5432/jooqtest</url>
                 <user>postgres</user>
                 <password>postgres</password>
               </jdbc>

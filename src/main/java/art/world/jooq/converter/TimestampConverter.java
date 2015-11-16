@@ -5,6 +5,11 @@ import java.time.Instant;
 
 import org.jooq.Converter;
 
+/**
+ * 
+ * @author xtutran
+ *
+ */
 public class TimestampConverter implements Converter<Timestamp, Instant> {
 
   /**

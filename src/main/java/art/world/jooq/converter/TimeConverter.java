@@ -5,6 +5,11 @@ import java.time.LocalTime;
 
 import org.jooq.Converter;
 
+/**
+ * 
+ * @author xtutran
+ *
+ */
 public class TimeConverter implements Converter<Time, LocalTime> {
 
   /**

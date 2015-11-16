@@ -5,7 +5,11 @@ import java.time.LocalDate;
 
 import org.jooq.Converter;
 
-//You may prefer Java Calendars over JDBC Timestamps
+/**
+ * 
+ * @author xtutran
+ *
+ */
 public class DateConverter implements Converter<Date, LocalDate> {
 
   /**
