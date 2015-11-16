@@ -1,4 +1,4 @@
-package art.world.jooq.converter;
+package art.world.jooq.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

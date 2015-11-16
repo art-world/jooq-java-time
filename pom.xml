@@ -87,19 +87,19 @@
 											<type>java.time.LocalDate</type>
 
 											<!-- Associate that custom type with your converter. -->
-											<converter>example.com.DateConverter</converter>
+											<converter>art.world.jooq.converter.DateConverter</converter>
 										</customType>
 										
 										<customType>
 											<name>LocalTime</name>
 											<type>java.time.LocalTime</type>
-											<converter>example.com.TimeConverter</converter>
+											<converter>art.world.jooq.converter.TimeConverter</converter>
 										</customType>
 										
 										<customType>
 											<name>Instant</name>
 											<type>java.time.Instant</type>
-											<converter>example.com.TimestampConverter</converter>
+											<converter>art.world.jooq.converter.TimestampConverter</converter>
 										</customType>
 									</customTypes>
 
