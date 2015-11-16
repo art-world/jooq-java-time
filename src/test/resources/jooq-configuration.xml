@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration>
+  <jdbc>
+    <driver>org.postgresql.Driver</driver>
+    <url>jdbc:postgresql://localhost:5432/jooqtest</url>
+    <user>postgres</user>
+    <password>postgres</password>
+  </jdbc>
+</configuration>
