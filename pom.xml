@@ -1,0 +1,155 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>art.world</groupId>
+	<artifactId>jooq-java-time</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<org.jooq.version>3.6.2</org.jooq.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq</artifactId>
+			<version>${org.jooq.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.2-1002-jdbc4</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jooq</groupId>
+				<artifactId>jooq-codegen-maven</artifactId>
+				<version>${org.jooq.version}</version>
+
+				<dependencies>
+					<dependency>
+						<groupId>org.jooq</groupId>
+						<artifactId>jooq-meta-extensions</artifactId>
+						<version>${org.jooq.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.postgresql</groupId>
+						<artifactId>postgresql</artifactId>
+						<version>9.2-1002-jdbc4</version>
+					</dependency>
+
+				</dependencies>
+
+				<executions>
+					<execution>
+						<id>generate-postgres</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<jdbc>
+								<driver>org.postgresql.Driver</driver>
+								<url>jdbc:postgresql://127.0.0.1:5433/jooqtest</url>
+								<user>postgres</user>
+								<password>postgres</password>
+							</jdbc>
+
+							<generator>
+								<database>
+
+									<name>org.jooq.util.postgres.PostgresDatabase</name>
+
+									<!-- All elements that are generated from your schema (A Java regular 
+										expression. Use the pipe to separate several expressions) Watch out for case-sensitivity. 
+										Depending on your database, this might be important! You can create case-insensitive 
+										regular expressions using this syntax: (?i:expr) Whitespace is ignored and 
+										comments are possible. -->
+									<includes>.*</includes>
+
+									<excludes>_?St_.*</excludes>
+
+									<inputSchema>public</inputSchema>
+									<!-- First, register your custom types here -->
+									<customTypes>
+										<customType>
+											<!-- Specify the name of your custom type. Avoid using names from 
+												org.jooq.impl.SQLDataType -->
+											<name>LocalDate</name>
+
+											<!-- Specify the Java type of your custom type. This corresponds 
+												to the Converter's <U> type. -->
+											<type>java.time.LocalDate</type>
+
+											<!-- Associate that custom type with your converter. -->
+											<converter>example.com.DateConverter</converter>
+										</customType>
+										
+										<customType>
+											<name>LocalTime</name>
+											<type>java.time.LocalTime</type>
+											<converter>example.com.TimeConverter</converter>
+										</customType>
+										
+										<customType>
+											<name>Instant</name>
+											<type>java.time.Instant</type>
+											<converter>example.com.TimestampConverter</converter>
+										</customType>
+									</customTypes>
+
+									<!-- Then, associate custom types with database columns -->
+									<forcedTypes>
+										<forcedType>
+											<!-- Specify the name of your custom type -->
+											<name>LocalDate</name>
+
+											<!-- Add a Java regular expression matching fully-qualified columns. 
+												Use the pipe to separate several expressions. If provided, both "expressions" 
+												and "types" must match. -->
+											<expression>.*date.*</expression>
+
+											<!-- Add a Java regular expression matching data types to be forced 
+												to have this type. Data types may be reported by your database as: - NUMBER 
+												- NUMBER(5) - NUMBER(5, 2) - any other form It is thus recommended to use 
+												defensive regexes for types. If provided, both "expressions" and "types" 
+												must match. -->
+											<types>date</types>
+										</forcedType>
+										
+										<forcedType>
+											<name>LocalTime</name>
+											<expression>.*time.*</expression>
+											<types>.*time.*</types>
+										</forcedType>
+										
+										<forcedType>
+											<name>Instant</name>
+											<expression>.*utc.*</expression>
+											<types>.*timestamp.*</types>
+										</forcedType>
+									</forcedTypes>
+								</database>
+
+								<generate>
+									<daos>true</daos>
+									<!-- Generation flags: See advanced configuration properties -->
+								</generate>
+
+								<target>
+									<packageName>artworld.generated.jooq</packageName>
+									<directory>src/main/java</directory>
+								</target>
+							</generator>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
