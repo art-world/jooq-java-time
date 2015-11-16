@@ -1,4 +1,4 @@
-package example.com;
+package art.world.jooq.converter;
 
 import java.sql.Date;
 import java.time.LocalDate;
