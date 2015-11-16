@@ -12,16 +12,16 @@ import org.jooq.Configuration;
 import org.jooq.SQLDialect;
 import org.jooq.impl.DefaultConfiguration;
 
-/*import artworld.generated.jooq.tables.daos.EventDao;
+import artworld.generated.jooq.tables.daos.EventDao;
 import artworld.generated.jooq.tables.daos.FoodDao;
 import artworld.generated.jooq.tables.daos.SysLogDao;
 import artworld.generated.jooq.tables.pojos.Event;
 import artworld.generated.jooq.tables.pojos.Food;
-import artworld.generated.jooq.tables.pojos.SysLog;*/
+import artworld.generated.jooq.tables.pojos.SysLog;
 
 public class DaoTest {
 
-    /*public static void main(String[] args) throws ClassNotFoundException {
+    public static void main(String[] args) throws ClassNotFoundException {
         String userName = "postgres";
         String password = "postgres";
         String url = "jdbc:postgresql://127.0.0.1:5433/jooqtest";
@@ -56,6 +56,6 @@ public class DaoTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
 }
